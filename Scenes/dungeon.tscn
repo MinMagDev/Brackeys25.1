@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bonjyrf8lppfa"]
+[gd_scene load_steps=5 format=3 uid="uid://bonjyrf8lppfa"]
 
-[ext_resource type="Texture2D" uid="uid://bqli4ixh81l5w" path="res://assets/images/empty_dungeon.png" id="1_j04bu"]
+[ext_resource type="Texture2D" uid="uid://bqli4ixh81l5w" path="res://assets/images/dungeon/empty_dungeon.png" id="1_j04bu"]
+[ext_resource type="PackedScene" uid="uid://de1s5l2evkqa1" path="res://scenes/up_door.tscn" id="2_dnjna"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s23g6"]
 size = Vector2(981, 39)
@@ -31,3 +32,8 @@ shape = SubResource("RectangleShape2D_ipfx7")
 
 [node name="RightWall" type="CollisionShape2D" parent="Collisions"]
 shape = SubResource("RectangleShape2D_ipfx7")
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="UpDoor" parent="Doors" instance=ExtResource("2_dnjna")]
+position = Vector2(0, -253)

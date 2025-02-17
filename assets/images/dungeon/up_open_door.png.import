@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqli4ixh81l5w"
-path="res://.godot/imported/empty_dungeon.png-4e635e19671872ba7e69825d4d4ecf0c.ctex"
+uid="uid://c7kblqdmj8wfb"
+path="res://.godot/imported/up_open_door.png-5f8a2bb6e6de5395cfc1a741730a17e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/empty_dungeon.png"
-dest_files=["res://.godot/imported/empty_dungeon.png-4e635e19671872ba7e69825d4d4ecf0c.ctex"]
+source_file="res://assets/images/dungeon/up_open_door.png"
+dest_files=["res://.godot/imported/up_open_door.png-5f8a2bb6e6de5395cfc1a741730a17e6.ctex"]
 
 [params]
 

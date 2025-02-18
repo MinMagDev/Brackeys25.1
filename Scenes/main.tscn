@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b84hbfngsauox"]
+[gd_scene load_steps=4 format=3 uid="uid://b84hbfngsauox"]
 
 [ext_resource type="PackedScene" uid="uid://bonjyrf8lppfa" path="res://scenes/dungeon.tscn" id="1_1nxen"]
 [ext_resource type="PackedScene" uid="uid://dl0l2tldqo5kr" path="res://scenes/player.tscn" id="1_5ho0n"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_n5r25"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_n5r25")
 
 [node name="Dungeon" parent="." instance=ExtResource("1_1nxen")]
 position = Vector2(513, 336)
@@ -11,3 +13,5 @@ position = Vector2(513, 336)
 [node name="Player" parent="." instance=ExtResource("1_5ho0n")]
 position = Vector2(617, 266)
 scale = Vector2(0.4, 0.4)
+
+[node name="Projectiles" type="Node2D" parent="."]

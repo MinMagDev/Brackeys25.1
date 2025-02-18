@@ -25,6 +25,7 @@ window/stretch/mode="viewport"
 [global_group]
 
 Enemys="All hostile NPCs"
+Player="Just the player"
 
 [input]
 

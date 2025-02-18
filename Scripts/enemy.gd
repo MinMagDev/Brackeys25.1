@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Enemy
 
 var max_health := 20
-var cur_health : int
+var cur_health := 20
 
 var damage := 2
 var armor := 1
@@ -25,9 +25,23 @@ static func new_enemy(start_position := Vector2.ZERO, \
 	new_enemy.armor      = enemy_armor
 	new_enemy.speed      = enemy_speed
 	return new_enemy
+	
+func _process(delta: float) -> void:
+	enemy_ai(delta)
+
+func enemy_ai(delta: float):
+	enemy_move(delta)
+	enemy_attack()
+
+func enemy_move(delta: float):
+	pass
+
+func enemy_attack():
+	pass
 
 func _on_deal_damage(damage: int) -> void:
 	print("Outch, lost: ", damage)
+	damage = damage - armor
 	cur_health -= damage
 	print("Health: ", cur_health)
 	if cur_health <= 0:

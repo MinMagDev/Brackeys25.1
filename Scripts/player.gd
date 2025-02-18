@@ -20,9 +20,8 @@ func move_player(delta: float) -> void:
 	velocity.x = direction.x
 	velocity.y = direction.y
 	
-
 	move_and_slide()
 
-
+#Just a redirection
 func _on_weapon_shoot_bullet(start_position: Vector2, direction: Vector2) -> void:
 	shoot_bullet.emit(start_position, direction)

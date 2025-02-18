@@ -14,7 +14,7 @@ var damage: int
 # Constructor für Projektile
 static func new_projectile(start_position := Vector2(0,0), \
 						  start_direction := Vector2(1,0), \
-						  proj_damage := 10) -> Projectile:
+						  proj_damage := 4) -> Projectile:
 	var new_projectile = bullet_scn.instantiate()
 	new_projectile.global_position = start_position
 	new_projectile.direction = start_direction

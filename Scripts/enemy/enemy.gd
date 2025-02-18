@@ -8,7 +8,7 @@ var cur_health := 20
 var damage := 2
 var armor := 1
 
-var speed := 200.0
+var speed := 170.0
 
 static var enemy_scn = preload("res://scenes/enemy.tscn")
 
@@ -38,6 +38,10 @@ func enemy_move(delta: float):
 
 func enemy_attack():
 	pass
+
+func attack_player(damage: int):
+	PlayerGlobal.damage(damage)
+
 
 func _on_deal_damage(damage: int) -> void:
 	print("Outch, lost: ", damage)

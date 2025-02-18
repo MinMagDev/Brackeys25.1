@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal shoot_bullet(start_position: Vector2, direction: float)
+signal shoot_bullet(start_position: Vector2, direction: Vector2)
 
 const SPEED = 170.0
 
@@ -24,5 +24,5 @@ func move_player(delta: float) -> void:
 	move_and_slide()
 
 
-func _on_weapon_shoot_bullet(start_position: Vector2, direction: float) -> void:
+func _on_weapon_shoot_bullet(start_position: Vector2, direction: Vector2) -> void:
 	shoot_bullet.emit(start_position, direction)

@@ -12,9 +12,6 @@ radius = 218.449
 [node name="Strider" instance=ExtResource("1_3o47i")]
 script = ExtResource("2_po1fb")
 
-[node name="Icon" parent="." index="0"]
-modulate = Color(1, 0.45222, 0.623353, 1)
-
 [node name="AttackArea" type="Area2D" parent="." index="2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" index="0"]

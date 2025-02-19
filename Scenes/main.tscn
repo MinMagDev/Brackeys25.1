@@ -19,6 +19,15 @@ position = Vector2(838, 508)
 [node name="Strider2" parent="Enemys" instance=ExtResource("4_wu7r0")]
 position = Vector2(838, 219)
 
+[node name="Strider5" parent="Enemys" instance=ExtResource("4_wu7r0")]
+position = Vector2(838, 359)
+
+[node name="Strider6" parent="Enemys" instance=ExtResource("4_wu7r0")]
+position = Vector2(167, 378)
+
+[node name="Strider7" parent="Enemys" instance=ExtResource("4_wu7r0")]
+position = Vector2(483, 534)
+
 [node name="Strider3" parent="Enemys" instance=ExtResource("4_wu7r0")]
 position = Vector2(164, 231)
 
@@ -26,7 +35,7 @@ position = Vector2(164, 231)
 position = Vector2(170, 517)
 
 [node name="Player" parent="." instance=ExtResource("1_5ho0n")]
-position = Vector2(617, 266)
+position = Vector2(505, 218)
 
 [node name="Projectiles" type="Node2D" parent="."]
 

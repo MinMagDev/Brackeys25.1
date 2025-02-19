@@ -2,6 +2,7 @@ extends Area2D
 
 
 var is_open : bool = false
+var leads_to_room = DungeonGlobal.DungeonRoom
 
 func set_is_open(value: bool) -> void:
 	is_open = value

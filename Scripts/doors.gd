@@ -14,11 +14,9 @@ var in_room_position: int
 
 func _ready() -> void:
 	if in_room_position == 4:
-		$OpenDoor.rotation = PI 
-		$ClosedDoor.rotation = PI
+		rotation = PI 
 	elif in_room_position == 5:
-		$OpenDoor.rotation = (3*PI)/2
-		$ClosedDoor.rotation = (3*PI)/2
+		rotation = (3*PI)/2
 
 func set_is_open(value: bool) -> void:
 	is_open = value

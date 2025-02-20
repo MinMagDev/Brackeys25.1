@@ -58,7 +58,7 @@ position = Vector2(-1, -251)
 position = Vector2(158, -251)
 
 [node name="RightDoor4" type="Marker2D" parent="DoorMarker"]
-position = Vector2(459, 29)
+position = Vector2(455, 29)
 
 [node name="CharacterMarker" type="Marker2D" parent="." groups=["CMarker"]]
 position = Vector2(0, 240)

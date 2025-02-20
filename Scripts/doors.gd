@@ -1,5 +1,6 @@
 extends Area2D
 
+signal enter_room(room : Vector2)
 
 var is_open : bool = false
 var leads_to_room : Vector2 
@@ -25,4 +26,7 @@ func set_is_open(value: bool) -> void:
 	
 
 func _on_body_entered(body: Node2D) -> void:
+	if is_open:
+		enter_room.emit(leads_to_room)
+	
 	set_is_open(not is_open)

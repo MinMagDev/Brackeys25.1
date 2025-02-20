@@ -7,6 +7,8 @@ var exit_room_exists : bool = false
 
 var rooms_in_next_layer : int
 
+var current_dungeon : Array[DungeonRoom]
+
 enum  Difficulty {
 	EASY,
 	NORMAL,
@@ -130,6 +132,14 @@ func generate_doors(layer: int,
 		doors.append(new_door)
 		
 	return doors
+	
+func get_room_at_coordinate(coordinate: Vector2, dungeon: Array[DungeonRoom]) -> DungeonRoom:
+	for room in dungeon:
+		if coordinate == room.coordinate:
+			return room
+	print_debug("Room at " + str(coordinate) + " not found")
+	return
+	
 
 
 func print_dungeon(dungeon: Array[DungeonRoom]) -> void:

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bmqgtx86ql1gu" path="res://assets/images/dungeon/side_closed_door.png" id="3_bggde"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gn8r4"]
-size = Vector2(9, 32)
+size = Vector2(17, 65)
 
 [node name="UpDoor" type="Area2D"]
 script = ExtResource("1_alpdq")
@@ -17,7 +17,7 @@ texture = ExtResource("2_7wr7k")
 texture = ExtResource("3_bggde")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(6.5, 0)
+position = Vector2(12, 0)
 shape = SubResource("RectangleShape2D_gn8r4")
 debug_color = Color(0.530059, 0.555543, 0.37866, 0.42)
 

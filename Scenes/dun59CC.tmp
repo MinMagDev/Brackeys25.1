@@ -8,9 +8,9 @@
 size = Vector2(981, 39)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipfx7"]
-size = Vector2(39, 296)
+size = Vector2(39, 521)
 
-[node name="Dungeon" type="Node2D" groups=["Room"]]
+[node name="Dungeon" type="Node2D"]
 script = ExtResource("1_31xo5")
 
 [node name="EmptyDungeon" type="Sprite2D" parent="."]
@@ -31,7 +31,7 @@ position = Vector2(-470, 252)
 shape = SubResource("RectangleShape2D_s23g6")
 
 [node name="LeftWall" type="CollisionShape2D" parent="Collisions"]
-position = Vector2(-940.5, 106)
+position = Vector2(-940.5, -6.5)
 shape = SubResource("RectangleShape2D_ipfx7")
 
 [node name="RightWall" type="CollisionShape2D" parent="Collisions"]
@@ -60,5 +60,5 @@ position = Vector2(158, -251)
 [node name="RightDoor4" type="Marker2D" parent="DoorMarker"]
 position = Vector2(459, 29)
 
-[node name="CharacterMarker" type="Marker2D" parent="." groups=["CMarker"]]
+[node name="CharacterSpawn" type="Marker2D" parent="."]
 position = Vector2(0, 240)

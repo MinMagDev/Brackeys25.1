@@ -2,6 +2,8 @@ extends Node2D
 
 var room : DungeonGlobal.DungeonRoom
 
+signal enter_room(room: Vector2)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	place_doors()
@@ -25,4 +27,8 @@ func place_doors() -> void:
 			4:
 				placement_coords = $DoorMarker/RightDoor4.position
 		door_node.position = placement_coords
+		door_node.enter_room.connect(_on_enter_room)
 		$Doors.add_child(door_node)
+
+func _on_enter_room(room_to_enter: Vector2):
+	enter_room.emit(room_to_enter)

@@ -23,8 +23,8 @@ DungeonGlobal="*res://scripts/globals/dungeon_global.gd"
 
 [display]
 
-window/size/viewport_width=1024
-window/size/viewport_height=672
+window/size/viewport_width=2048
+window/size/viewport_height=1344
 window/stretch/mode="viewport"
 
 [editor_plugins]

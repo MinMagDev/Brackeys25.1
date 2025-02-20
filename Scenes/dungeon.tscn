@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bonjyrf8lppfa"]
+[gd_scene load_steps=6 format=3 uid="uid://bonjyrf8lppfa"]
 
+[ext_resource type="Script" path="res://scripts/dungeon.gd" id="1_31xo5"]
 [ext_resource type="Texture2D" uid="uid://bqli4ixh81l5w" path="res://assets/images/dungeon/empty_dungeon.png" id="1_j04bu"]
-[ext_resource type="PackedScene" uid="uid://de1s5l2evkqa1" path="res://scenes/up_door.tscn" id="2_dnjna"]
+[ext_resource type="PackedScene" uid="uid://detw24om74frf" path="res://scenes/side_door.tscn" id="3_vnu1o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s23g6"]
 size = Vector2(981, 39)
@@ -10,6 +11,7 @@ size = Vector2(981, 39)
 size = Vector2(39, 521)
 
 [node name="Dungeon" type="Node2D"]
+script = ExtResource("1_31xo5")
 
 [node name="EmptyDungeon" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -37,5 +39,23 @@ shape = SubResource("RectangleShape2D_ipfx7")
 
 [node name="Doors" type="Node2D" parent="."]
 
-[node name="UpDoor" parent="Doors" instance=ExtResource("2_dnjna")]
-position = Vector2(0, -253)
+[node name="UpDoor" parent="Doors" instance=ExtResource("3_vnu1o")]
+position = Vector2(0, 280)
+in_room_position = 5
+
+[node name="DoorMarker" type="Node2D" parent="."]
+
+[node name="LeftDoor0" type="Marker2D" parent="DoorMarker"]
+position = Vector2(-462, 29)
+
+[node name="UpDoor1" type="Marker2D" parent="DoorMarker"]
+position = Vector2(-161, -253)
+
+[node name="UpDoor2" type="Marker2D" parent="DoorMarker"]
+position = Vector2(-1, -251)
+
+[node name="UpDoor3" type="Marker2D" parent="DoorMarker"]
+position = Vector2(158, -251)
+
+[node name="RightDoor4" type="Marker2D" parent="DoorMarker"]
+position = Vector2(459, 29)

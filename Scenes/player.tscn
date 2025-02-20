@@ -8,7 +8,8 @@
 size = Vector2(130, 130)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-collision_mask = 15
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_luyc1")
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -24,5 +25,7 @@ shape = SubResource("RectangleShape2D_rbm5e")
 [node name="Weapon" parent="." instance=ExtResource("3_xj1bm")]
 position = Vector2(0, -1)
 scale = Vector2(0.4, 0.4)
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="shoot_bullet" from="Weapon" to="." method="_on_weapon_shoot_bullet"]

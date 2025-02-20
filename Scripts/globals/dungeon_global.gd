@@ -1,11 +1,11 @@
 extends Node
 
 var up_door_scn   := preload("res://scenes/up_door.tscn")
-var side_door_scn := preload("res://scenes/up_door.tscn")
+var side_door_scn := preload("res://scenes/side_door.tscn")
 
 var exit_room_exists : bool = false
 
-var rooms_in_next_layer : int = 1
+var rooms_in_next_layer : int
 
 enum  Difficulty {
 	EASY,
@@ -38,28 +38,31 @@ func generation_worker(depth: int, rooms_in_layer:int, acc: Array[DungeonRoom]) 
 		return acc
 	
 	print(" New Layer: ", depth)
-	rooms_in_next_layer = 1
+	rooms_in_next_layer = 0
 	#Generate Rooms in a Layer
-	for i in range(0,rooms_in_layer):
+	for i in range(0, rooms_in_layer):
 		print("Yay new room")
 		var left_door :bool = false
 		if i != 0:
 			left_door = acc.back().has_right_door
-		var new_room = generate_room(depth, i + 1, rooms_in_layer, left_door)
+		var new_room = generate_room(depth, i + 1, rooms_in_layer, left_door, acc.size())
 		acc.append(new_room)
 	return generation_worker(depth - 1, rooms_in_next_layer, acc)
 
-func generate_room(layer: int, room_number: int, rooms_in_layer: int, left_door: bool) -> DungeonRoom:
-	var is_exit_room: bool = (randi_range(1, layer) == 1) and not exit_room_exists
+func generate_room(layer: int, room_number: int, rooms_in_layer: int, left_door: bool, room_count: int) -> DungeonRoom:
+	var is_exit_room: bool = (randi_range(1, layer) == 1) and \
+							 not exit_room_exists and  \
+							 room_count >= layer*layer
+							 
 	var coordinate = Vector2(layer, room_number)
-	if is_exit_room: 
-		exit_room_exists = true
-		return ExitRoom.new([], coordinate)
 	var room_type = room_distriubution[randi_range(0, room_distriubution.size() - 1)]
 	var new_room : DungeonRoom
 	
 	var right_door_possible : bool = rooms_in_layer != room_number
-	var doors : Array[Door] = generate_doors(layer, room_number, left_door, right_door_possible)
+	var doors : Array[Door] = generate_doors(layer, room_number, left_door, right_door_possible, is_exit_room)
+	if is_exit_room: 
+		exit_room_exists = true
+		return ExitRoom.new(doors, coordinate)
 	match room_type:
 		RoomTypes.ENEMY:
 			new_room = EnemyRoom.new(doors, coordinate)
@@ -73,44 +76,59 @@ func generate_room(layer: int, room_number: int, rooms_in_layer: int, left_door:
 func generate_doors(layer: int,
 					room_in_layer: int, 
 					left_door: bool , 
-					right_door_possible: bool
+					right_door_possible: bool,
+					is_exit_room: bool
 					) -> Array[Door]:
 	var doors : Array[Door] = []
-	if left_door:
-		var new_door = Door.new(
-			Vector2(layer, room_in_layer - 1),
-			side_door_scn.instantiate()
-			)
-		new_door.set_position(Vector2(layer, room_in_layer), 0)
-		doors.append(new_door)
-	
-	#Second Up Door?
-	if randi_range(0,3) == 0:
-		for i in range(1):
-			var new_door = Door.new(
-				Vector2(layer - 1, rooms_in_next_layer),
-				side_door_scn.instantiate()
-			)
-			new_door.set_position(Vector2(layer, room_in_layer), 1 + i*2)
-			doors.append(new_door)
-			rooms_in_next_layer += 1
-	else: #The only one door
-		var new_door = Door.new(
-			Vector2(layer - 1, rooms_in_next_layer),
-			side_door_scn.instantiate()
-		)
-		new_door.set_position(Vector2(layer, room_in_layer), 2)
-		doors.append(new_door)
-		rooms_in_next_layer += 1
 	
 	# Possiblity to create a doorway to the adjacent right room
-	if right_door_possible and randi_range(0,4) == 0:
+	if right_door_possible and randi_range(0,3) == 0:
+		var door_node = side_door_scn.instantiate()
+		door_node.in_room_position =  4
 		var new_door = Door.new(
 			Vector2(layer, room_in_layer + 1),
-			side_door_scn.instantiate()
+			door_node
 		)
 		new_door.set_position(Vector2(layer, room_in_layer), 4)
 		doors.append(new_door)
+	
+	if left_door:
+		var door_node = side_door_scn.instantiate()
+		door_node.in_room_position =  0
+		var new_door = Door.new(
+			Vector2(layer, room_in_layer - 1),
+			door_node
+			)
+		new_door.set_position(Vector2(layer, room_in_layer), 0)
+		doors.append(new_door)
+		
+	if layer == 1 or is_exit_room:
+		return doors
+		
+	#Second Up door
+	if randi_range(0,2) == 0:
+		for i in range(2):
+			rooms_in_next_layer += 1
+			var in_room_pos = 1 + i*2
+			var door_node = up_door_scn.instantiate()
+			door_node.in_room_position =  in_room_pos
+			var new_door = Door.new(
+				Vector2(layer - 1, rooms_in_next_layer),
+				door_node
+			)
+			new_door.set_position(Vector2(layer, room_in_layer), in_room_pos)
+			doors.append(new_door)
+	else: #The only one door
+		rooms_in_next_layer += 1
+		var door_node = up_door_scn.instantiate()
+		door_node.in_room_position =  2
+		var new_door = Door.new(
+			Vector2(layer - 1, rooms_in_next_layer),
+			door_node
+		)
+		new_door.set_position(Vector2(layer, room_in_layer), 2)
+		doors.append(new_door)
+		
 	return doors
 
 
@@ -128,6 +146,7 @@ func print_dungeon(dungeon: Array[DungeonRoom]) -> void:
 			print("    Position in room: " + str(door.door_position["in_room_position"]))
 			print("    Leads to: " + str(door.leads_to_room))
 			door_count += 1
+		count += 1
 
 #---------------------------------------------------------
 #CLASSES
@@ -162,6 +181,10 @@ class DungeonRoom:
 	func _init(_doors: Array[Door], _coordinate: Vector2) -> void:
 		doors = _doors
 		coordinate = _coordinate
+		if doors.size() == 0:
+			has_right_door = false
+			return
+		has_right_door = doors[0].door_position["in_room_position"] == 4
 	
 	func get_type() -> String:
 		return "base"

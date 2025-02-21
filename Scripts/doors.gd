@@ -21,11 +21,9 @@ func _ready() -> void:
 
 func set_is_open(value: bool) -> void:
 	is_open = value
-	$ClosedDoor.visible = is_open
+	$ClosedDoor.visible = not is_open
 	
 
 func _on_body_entered(_body: Node2D) -> void:
 	if is_open:
 		enter_room.emit(leads_to_room)
-	
-	set_is_open(not is_open)

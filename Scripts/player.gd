@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal shoot_bullet(start_position: Vector2, direction: Vector2)
 
-const SPEED = 400.0
+const SPEED = 170.0
 
 func _physics_process(delta: float) -> void:
 	

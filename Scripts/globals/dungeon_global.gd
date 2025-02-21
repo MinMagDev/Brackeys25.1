@@ -7,7 +7,8 @@ var side_door_scn := preload("res://scenes/side_door.tscn")
 
 var exit_room_exists : bool = false
 
-var rooms_in_next_layer : int
+var rooms_in_next_layer     : int
+var in_rooms_doors : Array[Vector2] = [Vector2(-1, -1)]
 
 var current_dungeon : Array[DungeonRoom]
 
@@ -40,7 +41,8 @@ func generate_dungeon(dungeon_size: int) -> Array[DungeonRoom]:
 func generation_worker(depth: int, rooms_in_layer:int, acc: Array[DungeonRoom]) -> Array[DungeonRoom]:
 	if depth == 0:
 		return acc
-	
+	var doors_in_previous_layer = in_rooms_doors
+	in_rooms_doors = []
 	print(" New Layer: ", depth)
 	rooms_in_next_layer = 0
 	#Generate Rooms in a Layer
@@ -49,7 +51,8 @@ func generation_worker(depth: int, rooms_in_layer:int, acc: Array[DungeonRoom]) 
 		var left_door :bool = false
 		if i != 0:
 			left_door = acc.back().has_right_door
-		var new_room = generate_room(depth, i + 1, rooms_in_layer, left_door, acc.size())
+		var new_room = generate_room(depth, i, rooms_in_layer, left_door, acc.size())
+		new_room.created_by_room = doors_in_previous_layer[i]
 		acc.append(new_room)
 	return generation_worker(depth - 1, rooms_in_next_layer, acc)
 
@@ -87,24 +90,16 @@ func generate_doors(layer: int,
 	
 	# Possiblity to create a doorway to the adjacent right room
 	if right_door_possible and randi_range(0,3) == 0:
-		var door_node = side_door_scn.instantiate()
-		door_node.in_room_position =  4
-		var new_door = Door.new(
-			Vector2(layer, room_in_layer + 1),
-			door_node
-		)
-		new_door.set_position(Vector2(layer, room_in_layer), 4)
-		doors.append(new_door)
+		doors.append(create_door(Vector2(layer, room_in_layer + 1),
+									 Vector2(layer, room_in_layer), 
+									 4,
+									 side_door_scn))
 	
 	if left_door:
-		var door_node = side_door_scn.instantiate()
-		door_node.in_room_position =  0
-		var new_door = Door.new(
-			Vector2(layer, room_in_layer - 1),
-			door_node
-			)
-		new_door.set_position(Vector2(layer, room_in_layer), 0)
-		doors.append(new_door)
+		doors.append(create_door(Vector2(layer, room_in_layer - 1),
+									 Vector2(layer, room_in_layer), 
+									 0,
+									 side_door_scn))
 		
 	if layer == 1 or is_exit_room:
 		return doors
@@ -112,28 +107,32 @@ func generate_doors(layer: int,
 	#Second Up door
 	if randi_range(0,2) == 0:
 		for i in range(2):
-			rooms_in_next_layer += 1
 			var in_room_pos = 1 + i*2
-			var door_node = up_door_scn.instantiate()
-			door_node.in_room_position =  in_room_pos
-			var new_door = Door.new(
-				Vector2(layer - 1, rooms_in_next_layer),
-				door_node
-			)
-			new_door.set_position(Vector2(layer, room_in_layer), in_room_pos)
-			doors.append(new_door)
+			doors.append(create_door(Vector2(layer - 1, rooms_in_next_layer),
+									 Vector2(layer, room_in_layer),
+									 in_room_pos,
+									 up_door_scn))
 	else: #The only one door
-		rooms_in_next_layer += 1
-		var door_node = up_door_scn.instantiate()
-		door_node.in_room_position =  2
-		var new_door = Door.new(
-			Vector2(layer - 1, rooms_in_next_layer),
-			door_node
-		)
-		new_door.set_position(Vector2(layer, room_in_layer), 2)
-		doors.append(new_door)
+		doors.append(create_door(Vector2(layer-1, rooms_in_next_layer),
+								 Vector2(layer, room_in_layer),
+								 2,
+								 up_door_scn))
 		
 	return doors
+
+func create_door(leads_to: Vector2, room_position: Vector2, in_position: int, door_scn: PackedScene) -> Door:
+	if in_position in [1,2,3]:
+		in_rooms_doors.append(room_position)
+		print("Doors in previous Layer: ", in_rooms_doors)
+		rooms_in_next_layer += 1
+	var door_node = door_scn.instantiate()
+	door_node.in_room_position =  in_position
+	var new_door = Door.new(
+		leads_to,
+		door_node
+	)
+	new_door.set_position(room_position, in_position)
+	return new_door
 	
 func get_room_at_coordinate(coordinate: Vector2, dungeon: Array[DungeonRoom]) -> DungeonRoom:
 	for room in dungeon:
@@ -195,9 +194,10 @@ class Door:
 		door_node.leads_to_room = leads_to_room
 
 class DungeonRoom:
-	var doors : Array[Door]
-	var coordinate : Vector2
-	var has_right_door: bool
+	var doors           : Array[Door]
+	var coordinate      : Vector2
+	var has_right_door  : bool
+	var created_by_room : Vector2
 	
 	func _init(_doors: Array[Door], _coordinate: Vector2) -> void:
 		doors = _doors

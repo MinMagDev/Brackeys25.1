@@ -11,9 +11,9 @@ func _ready() -> void:
 	var dungeon_depth :int = 7
 	var dungeon = DungeonGlobal.generate_dungeon(dungeon_depth)
 	DungeonGlobal.current_dungeon = dungeon
-	DungeonGlobal.print_dungeon(dungeon)
+	#DungeonGlobal.print_dungeon(dungeon)
 	place_generated_dungeon(dungeon)
-	_on_enter_room(Vector2(dungeon_depth, 1))
+	_on_enter_room(Vector2(dungeon_depth, 0))
 
 func place_generated_dungeon(dungeon: Array[DungeonGlobal.DungeonRoom]) -> void:
 	for room in dungeon:
@@ -37,6 +37,6 @@ func get_room_node(room_pos: Vector2):
 func _on_enter_room(room : Vector2) -> void:
 	print("Enter room: ", room)
 	var dungeon_room : Node2D = get_room_node(room)
-	print("Room Coord: ", dungeon_room.room.coordinate)
+	#print("Room Coord: ", dungeon_room.room.coordinate)
 	var spawn_position : Vector2 = dungeon_room.get_node("CharacterMarker").global_position
 	$Player.global_position = spawn_position

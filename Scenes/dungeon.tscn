@@ -39,8 +39,8 @@ shape = SubResource("RectangleShape2D_ipfx7")
 
 [node name="Doors" type="Node2D" parent="."]
 
-[node name="UpDoor" parent="Doors" instance=ExtResource("3_vnu1o")]
-position = Vector2(0, 280)
+[node name="BackDoor" parent="Doors" instance=ExtResource("3_vnu1o")]
+position = Vector2(0, 288)
 in_room_position = 5
 
 [node name="EnemySpawns" type="Node2D" parent="."]
@@ -84,6 +84,8 @@ position = Vector2(158, -251)
 position = Vector2(455, 29)
 
 [node name="CharacterMarker" type="Marker2D" parent="." groups=["CMarker"]]
-position = Vector2(0, 240)
+position = Vector2(0, 195)
 
 [node name="Enemys" type="Node2D" parent="."]
+
+[connection signal="enter_room" from="Doors/BackDoor" to="." method="_on_enter_room"]

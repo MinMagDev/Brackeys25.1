@@ -26,7 +26,6 @@ func generate_monsters(room_difficulty) -> Array[Enemy]:
 				enemy_points = randi_range(4,5)
 			DungeonGlobal.Difficulty.HARD:
 				enemy_points = randi_range(6,7)
-		#TODO finish it
 		
 		var enemys : Array[Enemy]
 		var enemy_set : Array = enemy_sets[randi_range(0,enemy_sets.size() - 1)]

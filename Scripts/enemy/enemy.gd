@@ -73,4 +73,6 @@ func _on_deal_damage(damage: int) -> void:
 		die()
 
 func die() -> void:
+	PlayerGlobal.player_score += cost
+	print("Score: " , PlayerGlobal.player_score)
 	queue_free()

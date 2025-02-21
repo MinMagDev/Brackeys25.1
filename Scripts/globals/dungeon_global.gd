@@ -3,6 +3,8 @@ extends Node
 var up_door_scn   := preload("res://scenes/up_door.tscn")
 var side_door_scn := preload("res://scenes/side_door.tscn")
 
+
+
 var exit_room_exists : bool = false
 
 var rooms_in_next_layer : int
@@ -244,15 +246,21 @@ class EnemyRoom extends DungeonRoom:
 		return "EnemyRoom"
 
 class TreasureRoom extends DungeonRoom:
-	var treasure_rarity: int
+	var treasure_scn
+	
+	#Treasure Scenes
+	var heal_scn := preload("res://scenes/heal.tscn")
+	var money_scn := preload("res://scenes/money.tscn")
 	
 	func _init(_doors: Array[Door], _coordinate: Vector2) -> void:
 		generate_treasure()
 		super(_doors, _coordinate)
 	
 	func generate_treasure():
-		#TODO: Whole Treasure System Lol
-		treasure_rarity = 1
+		if randi_range(0,2) == 0:
+			treasure_scn = heal_scn
+		else:
+			treasure_scn = money_scn
 	
 	func get_type() -> String:
 		return "TreasureRoom"

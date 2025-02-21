@@ -9,6 +9,10 @@ func _ready() -> void:
 	place_doors()
 	if room.get_type() == "EnemyRoom":
 		place_enemys()
+	elif room.get_type() == "TreasureRoom":
+		var treasure = room.treasure_scn.instantiate()
+		treasure.position = Vector2(0, 0)
+		add_child(treasure)
 
 func place_doors() -> void:
 	for door in room.doors:

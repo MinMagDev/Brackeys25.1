@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b84hbfngsauox"]
+[gd_scene load_steps=4 format=3 uid="uid://b84hbfngsauox"]
 
 [ext_resource type="PackedScene" uid="uid://dl0l2tldqo5kr" path="res://scenes/player.tscn" id="1_5ho0n"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_n5r25"]
+[ext_resource type="PackedScene" uid="uid://75kue0htg0am" path="res://scenes/heal.tscn" id="3_g5cfa"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_n5r25")
@@ -12,5 +13,7 @@ script = ExtResource("1_n5r25")
 position = Vector2(505, 218)
 
 [node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Heal" parent="." instance=ExtResource("3_g5cfa")]
 
 [connection signal="shoot_bullet" from="Player" to="." method="_on_player_shoot_bullet"]

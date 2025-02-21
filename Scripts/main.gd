@@ -8,10 +8,12 @@ func _on_player_shoot_bullet(start_position: Vector2, direction: Vector2) -> voi
 
 func _ready() -> void:
 	#print(str(DungeonGlobal.generate_dungeon(5).size()))
-	var dungeon = DungeonGlobal.generate_dungeon(7)
+	var dungeon_depth :int = 7
+	var dungeon = DungeonGlobal.generate_dungeon(dungeon_depth)
 	DungeonGlobal.current_dungeon = dungeon
-	#DungeonGlobal.print_dungeon(dungeon)
+	DungeonGlobal.print_dungeon(dungeon)
 	place_generated_dungeon(dungeon)
+	_on_enter_room(Vector2(dungeon_depth, 1))
 
 func place_generated_dungeon(dungeon: Array[DungeonGlobal.DungeonRoom]) -> void:
 	for room in dungeon:

@@ -156,6 +156,15 @@ func print_dungeon(dungeon: Array[DungeonRoom]) -> void:
 			print("    Position in room: " + str(door.door_position["in_room_position"]))
 			print("    Leads to: " + str(door.leads_to_room))
 			door_count += 1
+		if room.get_type() == "EnemyRoom":
+			print("Enemys:    count: " , room.enemys.size())
+			var enemy_count = 0
+			for enemy in room.enemys:
+				print("    Enemy number: ", enemy_count)
+				print("          Has the cost: ", enemy.cost)
+				enemy_count +=1
+		print("------------------------------------")
+		print(" ")
 		count += 1
 
 #---------------------------------------------------------
@@ -213,12 +222,12 @@ class EntranceRoom extends DungeonRoom:
 
 class EnemyRoom extends DungeonRoom:
 	var room_difficulty: Difficulty
-	var enemys: Array[Node2D]
+	var enemys: Array[Enemy]
 	
 	
 	func _init(_doors: Array[Door], _coordinate: Vector2) -> void:
 		room_difficulty = generate_difficulty()
-		enemys = generate_monsters()
+		enemys = EnemyGlobal.generate_monsters(room_difficulty)
 		super(_doors, _coordinate)
 		
 	#Generate the room difficulty for Enemy Rooms
@@ -230,10 +239,6 @@ class EnemyRoom extends DungeonRoom:
 			4:     room_diffculty = Difficulty.HARD
 		return room_diffculty
 		
-	
-	func generate_monsters() -> Array[Node2D]:
-		#TODO Generate Monsters in Enemey Room
-		return []
 	
 	func get_type() -> String:
 		return "EnemyRoom"

@@ -11,6 +11,7 @@ var in_room_position: int
 			# 1,2,3 = Up (either 1 and 2) or only 3 in one room
 			# 4 = right
 			# 5 = down_back
+			#FIXME: Backdoors don't work
 
 func _ready() -> void:
 	if in_room_position == 4:
@@ -23,7 +24,7 @@ func set_is_open(value: bool) -> void:
 	$ClosedDoor.visible = is_open
 	
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	if is_open:
 		enter_room.emit(leads_to_room)
 	

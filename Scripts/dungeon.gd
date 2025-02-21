@@ -7,6 +7,8 @@ signal enter_room(room: Vector2)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	place_doors()
+	if room.get_type() == "EnemyRoom":
+		place_enemys()
 
 func place_doors() -> void:
 	for door in room.doors:
@@ -29,6 +31,15 @@ func place_doors() -> void:
 		door_node.position = placement_coords
 		door_node.enter_room.connect(_on_enter_room)
 		$Doors.add_child(door_node)
+
+func place_enemys() -> void:
+	var count : int = 0
+	var markers = get_node("EnemySpawns").get_children()
+	for enemy in room.enemys:
+		enemy.position ==  markers[count].position
+		if enemy.get_parent():
+			enemy.get_parent().remove_child(enemy)
+		$Enemys.add_child(enemy)
 
 func _on_enter_room(room_to_enter: Vector2):
 	enter_room.emit(room_to_enter)

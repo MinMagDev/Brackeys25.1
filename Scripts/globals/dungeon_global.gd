@@ -3,8 +3,6 @@ extends Node
 var up_door_scn   := preload("res://scenes/up_door.tscn")
 var side_door_scn := preload("res://scenes/side_door.tscn")
 
-
-
 var exit_room_exists : bool = false
 
 var rooms_in_next_layer     : int
@@ -65,7 +63,7 @@ func generate_room(layer: int, room_number: int, rooms_in_layer: int, left_door:
 	var room_type = room_distriubution[randi_range(0, room_distriubution.size() - 1)]
 	var new_room : DungeonRoom
 	
-	var right_door_possible : bool = rooms_in_layer != room_number
+	var right_door_possible : bool = rooms_in_layer != room_number + 1
 	var doors : Array[Door] = generate_doors(layer, room_number, left_door, right_door_possible, is_exit_room)
 	if is_exit_room: 
 		exit_room_exists = true
@@ -216,7 +214,7 @@ class EntranceRoom extends DungeonRoom:
 	var artifact: int
 	
 	func _init(_doors: Array[Door], _coordinate: Vector2, _artifact: int) -> void:
-		artifact = _artifact
+		artifact = _artifact #TODO: Jeah Artifacts or so
 		super(_doors, _coordinate)
 	
 	func get_type() -> String:

@@ -7,7 +7,7 @@ const SPEED = 170.0
 func _physics_process(delta: float) -> void:
 	
 	move_player(delta)
-
+#TODO: Player and bullet sprite
 #Creates the player movement, 
 func move_player(delta: float) -> void:
 	var direction := Vector2.ZERO

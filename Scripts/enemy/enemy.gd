@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+#TODO: Enemy Sprites
+
 class_name Enemy
 
 var type : EnemyTypes = EnemyTypes.BASIC

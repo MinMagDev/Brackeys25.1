@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbgdguwr7k85x"]
+
+[ext_resource type="Texture2D" uid="uid://gil1wwb3v3ty" path="res://assets/images/exit_portal.png" id="1_r3fvi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5v08x"]
+radius = 28.1603
+
+[node name="ExitPortal" type="Area2D"]
+
+[node name="ExitPortal" type="Sprite2D" parent="."]
+texture = ExtResource("1_r3fvi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5v08x")

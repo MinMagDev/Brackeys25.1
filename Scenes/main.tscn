@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b84hbfngsauox"]
+[gd_scene load_steps=6 format=3 uid="uid://b84hbfngsauox"]
 
 [ext_resource type="PackedScene" uid="uid://dl0l2tldqo5kr" path="res://scenes/player.tscn" id="1_5ho0n"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_n5r25"]
 [ext_resource type="PackedScene" uid="uid://btkaojg73jfx6" path="res://scenes/start_room.tscn" id="2_c23iy"]
 [ext_resource type="PackedScene" uid="uid://75kue0htg0am" path="res://scenes/heal.tscn" id="3_g5cfa"]
+[ext_resource type="PackedScene" uid="uid://q6kss678q6dn" path="res://scenes/in_game_ui.tscn" id="5_j2hog"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_n5r25")
@@ -20,6 +21,12 @@ position = Vector2(505, 218)
 [node name="Heal" parent="." instance=ExtResource("3_g5cfa")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="InGameUI" parent="Camera2D" instance=ExtResource("5_j2hog")]
+offset_left = -483.0
+offset_top = -311.0
+offset_right = -483.0
+offset_bottom = -311.0
 
 [connection signal="enter_room" from="Rooms/StartRoom" to="." method="_on_enter_room"]
 [connection signal="shoot_bullet" from="Player" to="." method="_on_player_shoot_bullet"]

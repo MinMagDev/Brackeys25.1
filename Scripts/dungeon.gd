@@ -4,6 +4,8 @@ var room : DungeonGlobal.DungeonRoom
 
 var is_fight_room: bool = false
 
+var exit_portal_scn : PackedScene = preload("res://scenes/exit_portal.tscn")
+
 signal enter_room(room: Vector2)
 
 # Called when the node enters the scene tree for the first time.
@@ -18,6 +20,10 @@ func _ready() -> void:
 		var treasure = room.treasure_scn.instantiate()
 		treasure.position = Vector2(0, 0)
 		add_child(treasure)
+	elif room.get_type() == "ExitRoom":
+		var portal = exit_portal_scn.instantiate()
+		portal.position = Vector2.ZERO
+		add_child(portal)
 	change_all_doors(status)
 	$Doors/BackDoor.leads_to_room = room.created_by_room
 	

@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=3 uid="uid://nysmhkvsd3vr"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_cn5e8"]
+[ext_resource type="Texture2D" uid="uid://bqli4ixh81l5w" path="res://assets/images/dungeon/empty_dungeon.png" id="1_rmuxh"]
+[ext_resource type="FontFile" uid="uid://ybxl0qrkrbq7" path="res://assets/font/editundo.ttf" id="2_5w31n"]
+[ext_resource type="Theme" uid="uid://brifu2nqwwcux" path="res://assets/themes/main_theme.tres" id="3_xaqag"]
+[ext_resource type="LabelSettings" uid="uid://30udu2r8sha2" path="res://assets/themes/main_labels.tres" id="4_e2tue"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cn11l"]
+font = ExtResource("2_5w31n")
+font_size = 40
+font_color = Color(0.705882, 0.317647, 0.00784314, 1)
+shadow_size = 5
+shadow_color = Color(0.290196, 0.0392157, 0, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cn5e8")
+
+[node name="EmptyDungeon" type="Sprite2D" parent="."]
+position = Vector2(510, 337)
+scale = Vector2(2, 2)
+texture = ExtResource("1_rmuxh")
+
+[node name="Menu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 362.5
+offset_top = 256.5
+offset_right = 621.5
+offset_bottom = 375.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Artifact Heist"
+label_settings = SubResource("LabelSettings_cn11l")
+
+[node name="highscore" type="Label" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "High Score: 00"
+label_settings = ExtResource("4_e2tue")
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_xaqag")
+text = "Play"
+
+[node name="CreditsButton" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_xaqag")
+text = "Credits"
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Credits"]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 246.0
+offset_right = 714.0
+offset_bottom = 358.0
+text = "This game was made by: Levi Drieling
+Art by: Levi Drieling
+
+
+Font: Edit Undo by Aenigma Fonts"
+label_settings = ExtResource("4_e2tue")
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="Credits"]
+layout_mode = 0
+offset_left = 826.0
+offset_top = 499.0
+offset_right = 876.0
+offset_bottom = 527.0
+theme = ExtResource("3_xaqag")
+text = "Back"
+
+[connection signal="pressed" from="Menu/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Credits/BackButton" to="." method="_on_back_button_pressed"]

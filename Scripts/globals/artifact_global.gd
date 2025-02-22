@@ -20,13 +20,13 @@ func collect_artifact(artifact: ArtifactType) -> void:
 			pistol_offset = -1
 
 func generate_artifact() -> ArtifactType:
-	var rand = randi_range(0,5)
+	var rand = randi_range(0,4)
 	var artifact: ArtifactType
 	match rand:
-		0:
+		0,1:
 			artifact = ArtifactType.MISTPROJ
-		1,2,3:
+		2,3:
 			artifact = ArtifactType.ELECTRONPISTOL
-		4,5:
+		4:
 			artifact = ArtifactType.LENGGLAS
 	return artifact

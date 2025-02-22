@@ -103,7 +103,7 @@ func generate_doors(layer: int,
 		return doors
 		
 	#Second Up door
-	if randi_range(0,2) == 0:
+	if randi_range(0,1) == 0:
 		for i in range(2):
 			var in_room_pos = 1 + i*2
 			doors.append(create_door(Vector2(layer - 1, rooms_in_next_layer),

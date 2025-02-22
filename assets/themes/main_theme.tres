@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://brifu2nqwwcux"]
+
+[ext_resource type="FontFile" uid="uid://ybxl0qrkrbq7" path="res://assets/font/editundo.ttf" id="1_c0cjk"]
+
+[resource]
+default_font = ExtResource("1_c0cjk")
+default_font_size = 21
+Button/colors/font_color = Color(0.870588, 0.839216, 0.764706, 1)

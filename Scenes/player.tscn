@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl0l2tldqo5kr"]
+[gd_scene load_steps=6 format=3 uid="uid://dl0l2tldqo5kr"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_luyc1"]
 [ext_resource type="Texture2D" uid="uid://bp2n3b6emtqid" path="res://icon.svg" id="2_x7qmg"]
 [ext_resource type="PackedScene" uid="uid://dux8xadtve3sr" path="res://scenes/weapon.tscn" id="3_xj1bm"]
+[ext_resource type="Texture2D" uid="uid://dxxw661m5gl08" path="res://assets/images/mist.png" id="4_scmf6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbm5e"]
 size = Vector2(130, 130)
@@ -24,5 +25,10 @@ shape = SubResource("RectangleShape2D_rbm5e")
 [node name="Weapon" parent="." instance=ExtResource("3_xj1bm")]
 position = Vector2(0, -1)
 scale = Vector2(0.4, 0.4)
+
+[node name="Mist" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2, 0)
+texture = ExtResource("4_scmf6")
 
 [connection signal="shoot_bullet" from="Weapon" to="." method="_on_weapon_shoot_bullet"]

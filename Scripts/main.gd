@@ -13,7 +13,7 @@ func _ready() -> void:
 	DungeonGlobal.current_dungeon = dungeon
 	#DungeonGlobal.print_dungeon(dungeon)
 	place_generated_dungeon(dungeon)
-	_on_enter_room(Vector2(-1,-1))
+	_on_enter_room(Vector2(-42,-42))
 
 func place_generated_dungeon(dungeon: Array[DungeonGlobal.DungeonRoom]) -> void:
 	for room in dungeon:

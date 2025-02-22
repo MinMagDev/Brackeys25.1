@@ -213,8 +213,8 @@ class DungeonRoom:
 class EntranceRoom extends DungeonRoom:
 	var artifact: int
 	
-	func _init(_doors: Array[Door], _coordinate: Vector2, _artifact: int) -> void:
-		artifact = _artifact #TODO: Jeah Artifacts or so
+	func _init(_doors: Array[Door], _coordinate: Vector2) -> void:
+		artifact = ArtifactGlobal.generate_artifact() #TODO: Jeah Artifacts or so
 		super(_doors, _coordinate)
 	
 	func get_type() -> String:

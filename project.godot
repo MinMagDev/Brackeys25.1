@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 PlayerGlobal="*res://scripts/globals/player_global.gd"
 DungeonGlobal="*res://scripts/globals/dungeon_global.gd"
 EnemyGlobal="*res://scripts/globals/enemy_global.gd"
+ArtifactGlobal="*res://scripts/globals/artifact_global.gd"
 
 [display]
 

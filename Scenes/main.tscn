@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b84hbfngsauox"]
+[gd_scene load_steps=5 format=3 uid="uid://b84hbfngsauox"]
 
 [ext_resource type="PackedScene" uid="uid://dl0l2tldqo5kr" path="res://scenes/player.tscn" id="1_5ho0n"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_n5r25"]
 [ext_resource type="PackedScene" uid="uid://btkaojg73jfx6" path="res://scenes/start_room.tscn" id="2_c23iy"]
-[ext_resource type="PackedScene" uid="uid://75kue0htg0am" path="res://scenes/heal.tscn" id="3_g5cfa"]
 [ext_resource type="PackedScene" uid="uid://q6kss678q6dn" path="res://scenes/in_game_ui.tscn" id="5_j2hog"]
 
 [node name="Main" type="Node2D"]
@@ -13,12 +12,10 @@ script = ExtResource("1_n5r25")
 
 [node name="StartRoom" parent="Rooms" instance=ExtResource("2_c23iy")]
 
-[node name="Player" parent="." instance=ExtResource("1_5ho0n")]
-position = Vector2(505, 218)
-
 [node name="Projectiles" type="Node2D" parent="."]
 
-[node name="Heal" parent="." instance=ExtResource("3_g5cfa")]
+[node name="Player" parent="." instance=ExtResource("1_5ho0n")]
+position = Vector2(505, 218)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

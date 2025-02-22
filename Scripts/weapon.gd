@@ -9,8 +9,8 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var weapon_direction = get_weapon_direction()
-	var to_rotate = get_weapon_rotation(weapon_direction)
+	var weapon_direction = get_weapon_direction() * ArtifactGlobal.pistol_offset
+	var to_rotate = get_weapon_rotation(weapon_direction) 
 	rotate(to_rotate)
 	if Input.is_action_just_pressed("Attack"):
 		var spawn_pos = $SpawnPointer.global_position

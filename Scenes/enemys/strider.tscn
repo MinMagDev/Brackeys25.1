@@ -7,7 +7,7 @@
 radius = 46.0977
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqs0a"]
-radius = 218.449
+radius = 288.063
 
 [node name="Strider" instance=ExtResource("1_3o47i")]
 script = ExtResource("2_po1fb")

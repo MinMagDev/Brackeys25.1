@@ -13,7 +13,7 @@ func _ready() -> void:
 	DungeonGlobal.current_dungeon = dungeon
 	#DungeonGlobal.print_dungeon(dungeon)
 	place_generated_dungeon(dungeon)
-	_on_enter_room(Vector2(dungeon_depth, 0))
+	_on_enter_room(Vector2(-1,-1))
 
 func place_generated_dungeon(dungeon: Array[DungeonGlobal.DungeonRoom]) -> void:
 	for room in dungeon:
@@ -40,3 +40,4 @@ func _on_enter_room(room : Vector2) -> void:
 	#print("Room Coord: ", dungeon_room.room.coordinate)
 	var spawn_position : Vector2 = dungeon_room.get_node("CharacterMarker").global_position
 	$Player.global_position = spawn_position
+	$Camera2D.position = dungeon_room.position

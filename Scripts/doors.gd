@@ -11,7 +11,6 @@ var in_room_position: int
 			# 1,2,3 = Up (either 1 and 2) or only 3 in one room
 			# 4 = right
 			# 5 = down_back
-			#FIXME: Backdoors don't work
 
 func _ready() -> void:
 	if in_room_position == 4:

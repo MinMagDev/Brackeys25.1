@@ -25,6 +25,4 @@ shape = SubResource("RectangleShape2D_rbm5e")
 position = Vector2(0, -1)
 scale = Vector2(0.4, 0.4)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [connection signal="shoot_bullet" from="Weapon" to="." method="_on_weapon_shoot_bullet"]

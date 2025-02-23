@@ -1,16 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://btkaojg73jfx6"]
+[gd_scene load_steps=10 format=3 uid="uid://btkaojg73jfx6"]
 
 [ext_resource type="Script" path="res://scripts/start_room.gd" id="1_5vet3"]
 [ext_resource type="Texture2D" uid="uid://bqli4ixh81l5w" path="res://assets/images/dungeon/empty_dungeon.png" id="2_h7rqp"]
 [ext_resource type="PackedScene" uid="uid://detw24om74frf" path="res://scenes/side_door.tscn" id="3_oeeux"]
 [ext_resource type="PackedScene" uid="uid://de1s5l2evkqa1" path="res://scenes/up_door.tscn" id="4_l5rdx"]
 [ext_resource type="PackedScene" uid="uid://cggw53ho4cpr" path="res://scenes/altar.tscn" id="5_uljrn"]
+[ext_resource type="FontFile" uid="uid://ybxl0qrkrbq7" path="res://assets/font/editundo.ttf" id="6_wi53h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s23g6"]
 size = Vector2(981, 39)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipfx7"]
 size = Vector2(39, 511)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g50fe"]
+font = ExtResource("6_wi53h")
+font_size = 18
+font_color = Color(0.870588, 0.839216, 0.764706, 1)
 
 [node name="Dungeon" type="Node2D" groups=["Room"]]
 script = ExtResource("1_5vet3")
@@ -55,6 +61,20 @@ position = Vector2(0, 195)
 
 [node name="Altar" parent="." instance=ExtResource("5_uljrn")]
 position = Vector2(0, -3)
+
+[node name="StoryLabel" type="Label" parent="."]
+visible = false
+offset_left = 94.0
+offset_top = -201.0
+offset_right = 572.0
+offset_bottom = -89.0
+rotation = 0.395967
+text = "Ohh... I guess i should search for a different
+exit.
+
+I have a bad feeling carrying this artifact, but
+a job has to be made"
+label_settings = SubResource("LabelSettings_g50fe")
 
 [connection signal="enter_room" from="Doors/OutDoor" to="." method="_on_enter_room"]
 [connection signal="enter_room" from="Doors/InDoor" to="." method="_on_enter_room"]

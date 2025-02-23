@@ -12,6 +12,10 @@ func _process(delta: float) -> void:
 	var weapon_direction = get_weapon_direction() * ArtifactGlobal.pistol_offset
 	var to_rotate = get_weapon_rotation(weapon_direction) 
 	rotate(to_rotate)
+	if rotation_degrees < 0 or rotation_degrees > 180:
+		$Gun.flip_v = true
+	else:
+		$Gun.flip_v = false
 	if Input.is_action_just_pressed("Attack"):
 		var spawn_pos = $SpawnPointer.global_position
 		shoot_bullet.emit(spawn_pos, weapon_direction)

@@ -87,7 +87,7 @@ func generate_doors(layer: int,
 	var doors : Array[Door] = []
 	
 	# Possiblity to create a doorway to the adjacent right room
-	if right_door_possible and randi_range(0,3) == 0:
+	if right_door_possible and randi_range(0,2) == 0:
 		doors.append(create_door(Vector2(layer, room_in_layer + 1),
 									 Vector2(layer, room_in_layer), 
 									 4,

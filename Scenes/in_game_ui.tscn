@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://q6kss678q6dn"]
+[gd_scene load_steps=3 format=3 uid="uid://q6kss678q6dn"]
 
 [ext_resource type="Script" path="res://scripts/in_game_ui.gd" id="1_6kn8r"]
+[ext_resource type="LabelSettings" uid="uid://30udu2r8sha2" path="res://assets/themes/main_labels.tres" id="2_mf105"]
 
 [node name="InGameUI" type="Control"]
 layout_mode = 3
@@ -20,7 +21,9 @@ offset_bottom = 41.0
 [node name="Points" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Points: 0"
+label_settings = ExtResource("2_mf105")
 
 [node name="Health" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Health: 0"
+label_settings = ExtResource("2_mf105")

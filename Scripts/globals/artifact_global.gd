@@ -10,6 +10,10 @@ enum ArtifactType {
 	LENGGLAS
 }
 
+func reset():
+	taken_damage_buff = 0
+	pistol_offset = 1
+
 func collect_artifact(artifact: ArtifactType) -> void:
 	match artifact:
 		ArtifactType.MISTPROJ:

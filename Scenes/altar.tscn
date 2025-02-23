@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://cggw53ho4cpr"]
 
 [ext_resource type="Script" path="res://scripts/altar.gd" id="1_1rj6e"]
-[ext_resource type="Texture2D" uid="uid://gil1wwb3v3ty" path="res://assets/images/exit_portal.png" id="2_ehgh4"]
-[ext_resource type="Texture2D" uid="uid://bp2n3b6emtqid" path="res://icon.svg" id="2_yh5kv"]
-[ext_resource type="Texture2D" uid="uid://duclajlwu077e" path="res://assets/images/money.png" id="3_p2pg7"]
+[ext_resource type="Texture2D" uid="uid://clvcmx0qch1nk" path="res://assets/images/artifacts/mistprojector.png" id="2_t73od"]
+[ext_resource type="Texture2D" uid="uid://6phxmp3p62lt" path="res://assets/images/artifacts/electrone-pistol.png" id="3_k45ew"]
+[ext_resource type="Texture2D" uid="uid://ct6x1clxlef7b" path="res://assets/images/artifacts/lengglas.png" id="4_tvhq7"]
 [ext_resource type="Texture2D" uid="uid://ckt68e6v6jjk2" path="res://assets/images/altar.png" id="5_ervu3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmf4n"]
@@ -11,15 +11,15 @@ size = Vector2(96, 85)
 
 [node name="Altar" type="Area2D"]
 script = ExtResource("1_1rj6e")
-mistproj_sprite = ExtResource("2_ehgh4")
-electron_pistol_sprite = ExtResource("3_p2pg7")
-leng_glas_sprite = ExtResource("2_yh5kv")
+mistproj_sprite = ExtResource("2_t73od")
+electron_pistol_sprite = ExtResource("3_k45ew")
+leng_glas_sprite = ExtResource("4_tvhq7")
 
 [node name="AltarSprite" type="Sprite2D" parent="."]
 texture = ExtResource("5_ervu3")
 
 [node name="ArtifactSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+position = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 18.5)
